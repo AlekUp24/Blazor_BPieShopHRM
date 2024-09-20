@@ -1,0 +1,38 @@
+﻿@page "/employeeoverview"
+@attribute [StreamRendering(true)]
+
+
+<h1>Employee Overview</h1>
+
+@if (Employees == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table table-light">
+        <thead class="table-primary">
+            <tr>
+                <th></th>
+                <th>Employee ID</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var emp in Employees)
+            {
+                <tr>
+                    <td><img src="@($"https://gillcleerenpluralsight.blob.core.windows.net/person/{emp.EmployeeId}-small.jpg")" class="rounded-circle" /></td>
+                    <td>@emp.EmployeeId</td>
+                    <td>@emp.FirstName</td>
+                    <td>@emp.LastName</td>
+                    <td>
+                        <a href="@($"employeedetail/{emp.EmployeeId}")" class="btn btn-outline-primary btn-sm mb-1">Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
