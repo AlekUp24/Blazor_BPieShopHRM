@@ -1,5 +1,6 @@
 ﻿@page "/employeedetail/{EmployeeId:int}"
 
+@rendermode InteractiveServer
 
 <section class="employee-detail">
     <h1 class="page-title">
@@ -11,6 +12,28 @@
     <div class="col-12 row">
         <div class="col-2 text-center">
             <img src="@($"https://gillcleerenpluralsight.blob.core.windows.net/person/{Employee.EmployeeId}.jpg")" class="img-fluid rounded-circle employee-detail-img" />
+
+            @if (Employee.IsOnHoliday)
+            {
+                <div>
+
+                    <span class="badge bg-primary text-wrap" style="width: 6rem;">
+                        On holiday
+                    </span>
+                </div>
+            }
+            else
+            {
+                <div>
+                    <span class="badge bg-secondary text-wrap" style="width: 6rem;">
+                        Working
+                    </span>
+                </div>
+            }
+
+            <div class="mt-2">
+                <button type="button" @onclick="@ChangeHolidayState" class="btn btn-outline-primary btn-sm me-1">Change holiday state</button>
+            </div>
 
         </div>
         <div class="col-10 row">
@@ -119,3 +142,5 @@
 
 
 </section>
+
+
