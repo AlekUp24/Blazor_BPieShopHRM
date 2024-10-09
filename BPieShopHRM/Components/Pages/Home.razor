@@ -4,3 +4,17 @@
 
 <h2>Welcome!</h2>
 <br />
+
+@foreach (var widgetType in Widgets)
+{
+    <ErrorBoundary>
+        <ChildContent>
+            <DynamicComponent Type="widgetType"></DynamicComponent>
+        </ChildContent>
+        <ErrorContent>
+            <p>Something went wrong...</p>
+        </ErrorContent>
+
+    </ErrorBoundary>
+
+}

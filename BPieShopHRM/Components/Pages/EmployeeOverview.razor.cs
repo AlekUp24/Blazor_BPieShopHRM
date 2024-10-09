@@ -7,6 +7,9 @@ namespace BPieShopHRM.Components.Pages
     {
         public List<Employee> Employees { get; set; } = default!;
         private Employee? _selectedEmployee;
+
+        private string Title = "Employee Overview";
+
         protected async override Task OnInitializedAsync()
         {
             await Task.Delay(1000);
