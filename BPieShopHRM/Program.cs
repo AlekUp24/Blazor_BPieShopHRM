@@ -1,10 +1,25 @@
 using BPieShopHRM.Components;
+using BPieShopHRM.Contracts.Repositories;
+using BPieShopHRM.Contracts.Services;
+using BPieShopHRM.Data;
+using BPieShopHRM.Repositories;
+using BPieShopHRM.Services;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents().
     AddInteractiveServerComponents();
+
+builder.Services.AddDbContextFactory<AppDbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration["ConnectionStrings:DefaultConnection"]
+        ));
+
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<IEmployeeDataService, EmployeeDataService>();
 
 var app = builder.Build();
 
