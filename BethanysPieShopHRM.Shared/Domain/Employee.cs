@@ -49,6 +49,7 @@ namespace BethanysPieShopHRM.Shared.Domain
 
         public double? Longitude { get; set; }
 
+        public List<TimeRegistration>? TimeRegistrations { get; set; }
 
         [NotMapped]
         public byte[]? ImageContent { get; set; }

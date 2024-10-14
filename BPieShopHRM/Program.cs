@@ -4,6 +4,8 @@ using BPieShopHRM.Contracts.Services;
 using BPieShopHRM.Data;
 using BPieShopHRM.Repositories;
 using BPieShopHRM.Services;
+using BPieShopHRM.State;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
@@ -19,7 +21,12 @@ builder.Services.AddDbContextFactory<AppDbContext>(options =>
         ));
 
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<ITimeRegistrationRepository, TimeRegistrationRepository>();
+
 builder.Services.AddScoped<IEmployeeDataService, EmployeeDataService>();
+builder.Services.AddScoped<ITimeRegistrationDataService, TimeRegistrationDataService>();
+
+builder.Services.AddScoped<ApplicationState>();
 
 var app = builder.Build();
 

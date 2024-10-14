@@ -1,4 +1,6 @@
-﻿using BPieShopHRM.Services;
+﻿using BPieShopHRM.Contracts.Services;
+using BPieShopHRM.Services;
+using Microsoft.AspNetCore.Components;
 
 namespace BPieShopHRM.Components.Widgets
 {
@@ -6,9 +8,12 @@ namespace BPieShopHRM.Components.Widgets
     {
         public int EmployeeCounter { get; set; }
 
-        protected override void OnInitialized()
+        [Inject]
+        public IEmployeeDataService? EmployeeDataService { get; set; }
+
+        protected async override Task OnInitializedAsync()
         {
-            EmployeeCounter = MockDataService.Employees.Count;
+            EmployeeCounter = (await EmployeeDataService.GetAllEmployees()).Count();
         }
     }
 }
