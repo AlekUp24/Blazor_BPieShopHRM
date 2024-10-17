@@ -26,6 +26,15 @@ builder.Services.AddScoped<ITimeRegistrationRepository, TimeRegistrationReposito
 builder.Services.AddScoped<IEmployeeDataService, EmployeeDataService>();
 builder.Services.AddScoped<ITimeRegistrationDataService, TimeRegistrationDataService>();
 
+builder.Services.AddScoped<ICountryDataService, CountryDataService>();
+builder.Services.AddScoped<IJobCategoryDataService, JobCategoryDataService>();
+
+builder.Services.AddScoped<ICountryRepository, CountryRepository>();
+builder.Services.AddScoped<IJobCategoryRepository, JobCategoryRepository>();
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+
 builder.Services.AddScoped<ApplicationState>();
 
 var app = builder.Build();
